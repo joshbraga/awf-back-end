@@ -14,10 +14,10 @@ dotenv.config();
 
 const PORT: number = 7000;
 
-const options = {
-  key: fs.readFileSync(path.resolve(__dirname, "../localhost-key.pem")),
-  cert: fs.readFileSync(path.resolve(__dirname, "../localhost.pem"))
-}
+// const options = {
+//   key: fs.readFileSync(path.resolve(__dirname, "../localhost-key.pem")),
+//   cert: fs.readFileSync(path.resolve(__dirname, "../localhost.pem"))
+// }
 
 const app = express();
 
@@ -36,7 +36,7 @@ mongoose.connection.once('open', function () {
   console.log('Mongoose: MongoDB database connection established successfully');
 });
 
-const server = https.createServer(options, app);
+const server = https.createServer(app);
 
 // app.listen(PORT, () => {
 //   console.log(`Listening on port hi ${PORT}`);
