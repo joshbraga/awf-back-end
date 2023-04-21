@@ -8,16 +8,22 @@ import fs from 'fs';
 import path from 'path';
 import https from 'https';
 
-import {postRoutes} from './routes/posts.routes';
+import { postRoutes } from './routes/posts.routes';
 
 dotenv.config();
 
 const PORT: number = 7000;
 
-// const options = {
-//   key: fs.readFileSync(path.resolve(__dirname, "../localhost-key.pem")),
-//   cert: fs.readFileSync(path.resolve(__dirname, "../localhost.pem"))
-// }
+let options = {};
+
+if (process.env.LOCAL_DEPLOYMENT) {
+  options = {
+    key: fs.readFileSync(path.resolve(__dirname, "../localhost-key.pem")),
+    cert: fs.readFileSync(path.resolve(__dirname, "../localhost.pem"))
+  }
+}
+
+
 
 const app = express();
 
@@ -36,14 +42,20 @@ mongoose.connection.once('open', function () {
   console.log('Mongoose: MongoDB database connection established successfully');
 });
 
-const server = https.createServer(app);
+const server = https.createServer(options, app);
 
-// app.listen(PORT, () => {
-//   console.log(`Listening on port hi ${PORT}`);
-// });
+if (process.env.LOCAL_DEPLOYMENT) {
+  server.listen(443, () => {
+    console.log(`Listening on port hi ${7000}`);
+  });
+} else {
+  app.listen(443, () => {
+    console.log(`Listening on port hi ${443}`);
+  });
+}
 
-server.listen(7000, () => {
-  console.log(`Listening on port hi ${7000}`);
-});
+
+
+
 
 //mongodb+srv://administrator:cvLrdOiTvoQlscbC@roomate-hub-cluster.oo7vsvf.mongodb.net/roomateHub
