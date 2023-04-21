@@ -19,8 +19,8 @@ const JWT_REFRESH_TOKEN_SECRET = '0154441011bfdc6a693ebc6ebd0943354dcc6a405d33e6
 const allowedOrigins = [
   'http://localhost:3000',
   'https://localhost:3000',
-  'http://roommate-hub.azurewebsites.net/',
-  'https://roommate-hub.azurewebsites.net/'
+  'http://roommate-hub.azurewebsites.net',
+  'https://roommate-hub.azurewebsites.net'
 ];
 
 dotenv.config();
@@ -62,7 +62,7 @@ app.use('/dwelling', dwellingRoutes);
 app.use('/posts', postRoutes);
 //app.use('/users', userRoutes);
 
-
+//validateJWT
 app.use((req: Request, res: Response, next: NextFunction) => {
   const header = req.headers['authorization'];
   if (!header) {
