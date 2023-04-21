@@ -65,6 +65,8 @@ export async function InviteUserToDwelling(req: Request, res: Response) {
 
         const userResult = await userModel.findOne({ user });
 
+        console.log('userResult', userResult);
+
         if (!userResult) {
             return res.status(404).json({ message: 'User does not exist' });
         }
