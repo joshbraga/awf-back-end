@@ -14,16 +14,16 @@ dotenv.config();
 
 const PORT = process.env.PORT || 7000;
 
-let options = {};
+// let options = {};
 
 
 
-if (process.env.LOCAL_DEPLOYMENT) {
-  options = {
-    key: fs.readFileSync(path.resolve(__dirname, "../localhost-key.pem")),
-    cert: fs.readFileSync(path.resolve(__dirname, "../localhost.pem"))
-  }
-}
+// if (process.env.LOCAL_DEPLOYMENT) {
+//   options = {
+//     key: fs.readFileSync(path.resolve(__dirname, "../localhost-key.pem")),
+//     cert: fs.readFileSync(path.resolve(__dirname, "../localhost.pem"))
+//   }
+// }
 
 
 
@@ -33,16 +33,16 @@ app.use('/posts', postRoutes);
 //app.use('/users', userRoutes);
 
 
-mongoose
-  //mongodb+srv://administrator:cvLrdOiTvoQlscbC@roomate-hub-cluster.oo7vsvf.mongodb.net/test
-  .connect(`mongodb+srv://administrator:cvLrdOiTvoQlscbC@roomate-hub-cluster.oo7vsvf.mongodb.net/roomateHub`)
-  //.connect(`mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@roomate-hub-cluster.oo7vsvf.mongodb.net/roomateHub`)
-  .then(() => console.log('mongodb connected'))
-  .catch((err) => console.log('Failed to connect ', err));
+// mongoose
+//   //mongodb+srv://administrator:cvLrdOiTvoQlscbC@roomate-hub-cluster.oo7vsvf.mongodb.net/test
+//   .connect(`mongodb+srv://administrator:cvLrdOiTvoQlscbC@roomate-hub-cluster.oo7vsvf.mongodb.net/roomateHub`)
+//   //.connect(`mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@roomate-hub-cluster.oo7vsvf.mongodb.net/roomateHub`)
+//   .then(() => console.log('mongodb connected'))
+//   .catch((err) => console.log('Failed to connect ', err));
 
-mongoose.connection.once('open', function () {
-  console.log('Mongoose: MongoDB database connection established successfully');
-});
+// mongoose.connection.once('open', function () {
+//   console.log('Mongoose: MongoDB database connection established successfully');
+// });
 
 
 
