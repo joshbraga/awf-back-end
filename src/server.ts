@@ -1,3 +1,5 @@
+// REFERENCE      : Contents of this file was taken and modified from our capstone project. We have the same group for both projects
+
 import * as dotenv from 'dotenv'
 import express, {Request, Response, NextFunction} from 'express'
 import cors, { CorsOptions } from 'cors'

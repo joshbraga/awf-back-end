@@ -1,3 +1,5 @@
+// REFERENCE      : Contents of this file was taken and modified from our capstone project. We have the same group for both projects
+
 import { Request, Response } from 'express';
 import bcrypt from 'bcrypt';
 import { userModel } from '../models/user.model';
