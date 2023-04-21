@@ -10,6 +10,7 @@ import https from 'https';
 
 import { postRoutes } from './routes/posts.routes';
 import { authRoutes } from './routes/auth.routes';
+import { dwellingRoutes } from './routes/dwelling.routes';
 
 dotenv.config();
 
@@ -25,6 +26,7 @@ app.use(cookieParser());
 
 
 app.use('/auth', authRoutes);
+app.use('/dwelling', dwellingRoutes);
 app.use('/posts', postRoutes);
 //app.use('/users', userRoutes);
 

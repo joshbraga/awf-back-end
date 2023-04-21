@@ -7,5 +7,6 @@ export interface IDwelling {
     roommates: INotice[],
     bills: IBill[]
     landlord: INotice[],
-    owner: string
+    owner: string,
+    tenants: string[]
 }

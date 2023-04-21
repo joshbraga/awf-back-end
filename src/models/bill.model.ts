@@ -5,7 +5,8 @@ export const billSchema = new mongoose.Schema({
     amount: String,
     username: String,
     item: String,
-    note: String
+    note: String,
+    date: String
 }, { collection: 'dwellingData' });
 
 export const billModel = mongoose.model<IBill & mongoose.Document>('BillSchema', billSchema);

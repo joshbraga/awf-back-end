@@ -2,5 +2,6 @@ export interface IUser {
     username: string,
     password?: string,
     currentDwelling: string,
-    availableDwellings: string[]
+    availableDwellings: string[],
+    refreshToken: string
 }

@@ -1,33 +1,24 @@
 import {Router, Request, Response} from 'express';
+import bcrypt from 'bcrypt';
+
 import { userModel } from '../models/user.model';
+import { AddUser, HandleLogin, HandleLogout, HandleRefreshToken } from '../controllers/auth.controllers';
 
 
 export const authRoutes = Router();
 
 authRoutes.post("/login", async(req: Request, res: Response) => {
-    const {username, password} = req.body;
-
-    if (!username || !password) {
-        return res.status(400).json({message: 'Username/password required'});
-    }
-
-    
-
-    return res.status(200).json({username: username, password: password});
-
+    return await HandleLogin(req, res);
 });
 
-authRoutes.post("/dev-user", async(req: Request, res: Response) => {    
-    const {username, password, currentDwelling, availableDwellings } = req.body;
+authRoutes.post("/refresh", async(req: Request, res: Response) => {
+    return await HandleRefreshToken(req, res);    
+});
 
-    console.log('fu');
+authRoutes.post("/logout", async(req: Request, res: Response) => {
+    return await HandleLogout(req, res);    
+});
 
-    
-
-    const newUser = new userModel({username, password, currentDwelling, availableDwellings});
-
-    newUser.save()
-    .then(() => res.status(200).json({message: 'Added a new user'}))
-    .catch((err) => res.status(500).json({message: 'Internal server error', err}));   
-
+authRoutes.post("/new-user", async(req: Request, res: Response) => {    
+      return await AddUser(req, res);
 });

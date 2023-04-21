@@ -12,6 +12,7 @@ const dwellingSchema = new mongoose.Schema({
     bills: [billSchema],
     landlord: [noticeSchema],
     owner: String,
+    tenants: [String]
 }, { collection: 'dwellingData' });
 
 export const dwellingModel = mongoose.model<IDwelling & mongoose.Document>('DwellingSchema', dwellingSchema);

@@ -6,7 +6,8 @@ const userSchema = new mongoose.Schema({
     username: String,
     password: String,
     currentDwelling: String,
-    availableDwellings: [String]
+    availableDwellings: [String],
+    refreshToken: String
 }, {collection: 'userData'});
 
 export const userModel = mongoose.model<IUser & mongoose.Document>('UserSchema', userSchema);
