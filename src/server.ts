@@ -62,6 +62,9 @@ app.use(express.json());
 
 
 app.use('/auth', authRoutes);
+app.use('/dwelling', dwellingRoutes);
+app.use('/posts', postRoutes);
+app.use('/users', userRoutes);
 
 //validateJWT
 app.use((req: Request, res: Response, next: NextFunction) => {
@@ -85,9 +88,7 @@ app.use((req: Request, res: Response, next: NextFunction) => {
   )
 });
 
-app.use('/dwelling', dwellingRoutes);
-app.use('/posts', postRoutes);
-app.use('/users', userRoutes);
+
 
 mongoose
   //mongodb+srv://administrator:cvLrdOiTvoQlscbC@roomate-hub-cluster.oo7vsvf.mongodb.net/test
