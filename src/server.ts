@@ -12,22 +12,7 @@ import {postRoutes} from './routes/posts.routes';
 
 dotenv.config();
 
-if (!process.env.PORT) {
-  console.log('process ENV PORT does not exist');
-  process.exit(1);
-}
-
-if (!process.env.MONGO_USERNAME) {
-  console.log('process ENV MONGO_USERNAME does not exist');
-  process.exit(1);
-}
-
-if (!process.env.MONGO_PASSWORD) {
-  console.log('process ENV MONGO_PASSWORD does not exist');
-  process.exit(1);
-}
-
-const PORT: number = parseInt(process.env.PORT as string, 10);
+const PORT: number = 7000;
 
 const options = {
   key: fs.readFileSync(path.resolve(__dirname, "../localhost-key.pem")),
