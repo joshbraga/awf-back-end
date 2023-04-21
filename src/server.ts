@@ -44,16 +44,11 @@ mongoose.connection.once('open', function () {
 
 
 
-if (process.env.LOCAL_DEPLOYMENT) {
-  const server = https.createServer(options, app);
-  server.listen(443, () => {
-    console.log(`Listening on port hi ${443}`);
-  });
-} else {
-  app.listen(443, () => {
-    console.log(`Listening on port hi ${443}`);
-  });
-}
+
+app.listen(1337, () => {
+  console.log(`Listening on port hi ${1337}`);
+});
+
 
 
 
