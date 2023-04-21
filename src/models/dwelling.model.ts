@@ -6,10 +6,12 @@ import { IDwelling } from "./dwelling.interface";
 
 
 const dwellingSchema = new mongoose.Schema({
+    code: String,
     announcements: [noticeSchema],
     roommates: [noticeSchema],
     bills: [billSchema],
-    landlord: [noticeSchema]
+    landlord: [noticeSchema],
+    owner: String,
 }, { collection: 'dwellingData' });
 
 export const dwellingModel = mongoose.model<IDwelling & mongoose.Document>('DwellingSchema', dwellingSchema);
