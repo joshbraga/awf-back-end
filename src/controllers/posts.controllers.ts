@@ -39,7 +39,6 @@ export async function getAllPosts (req: Request, res: Response) {
 export async function addNotice (req: Request, res: Response) {
     //return res.json({message: 'NOT IMPLEMENTED: AddPost'});
 
-    const { code, title, content, user, date, type } = req.body
     // const date = new Date();
     // const year = date.getFullYear();
     // const month = date.getMonth()+1;
@@ -59,6 +58,10 @@ export async function addNotice (req: Request, res: Response) {
 
     //await newDwelling.save();
 
+    console.log(req.body);
+    
+    const { code, title, content, user, date, type } = req.body
+
     const newNotice = new noticeModel({
         username: user,
         title: title,
@@ -66,22 +69,31 @@ export async function addNotice (req: Request, res: Response) {
         date: date
     })
 
-    const dwelling = await dwellingModel.findOne({code: "00000"})
-    if(!type){
-        res.status(400).json({message: "No type specfied"});
-    }
-    if(type === "announcement"){
-        dwelling?.announcements.push(newNotice);
-    }
-    else if(type === "roommate"){
-        dwelling?.roommates.push(newNotice);
-    }
-    else if(type === "landlord"){
-        dwelling?.landlord.push(newNotice);
-    }
+    try
+    {
+        const dwelling = await dwellingModel.findOne({code: code})
+        
+        if(!type){
+            res.status(400).json({message: "No type specfied"});
+        }
+        if(type === "announcement"){
+            dwelling?.announcements.push(newNotice);
+        }
+        else if(type === "roommate"){
+            dwelling?.roommates.push(newNotice);
+        }
+        else if(type === "landlord"){
+            dwelling?.landlord.push(newNotice);
+        }
 
-    await dwelling?.save();
-    res.status(200).json({message:`Added a new ${type} post.`});
+        dwelling?.save();
+        res.status(200).json({message:`Added a new ${type} post.`});
+    }
+    catch(err)
+    {
+        console.log(err);
+        res.status(500).json({message:'Failed to add new notice.'});
+    }
 }
 
 export async function addBill (req: Request, res: Response) {
