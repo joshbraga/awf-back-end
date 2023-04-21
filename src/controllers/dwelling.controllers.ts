@@ -51,8 +51,6 @@ export async function InviteUserToDwelling(req: Request, res: Response) {
     try {
         const { code, user } = req.body;
 
-        console.log(req.body);
-
         if (!code || !user || code.length === 0 || user.length === 0) {
             return res.status(400).json({ message: 'missing or malformed parameters' });
         }
@@ -63,9 +61,7 @@ export async function InviteUserToDwelling(req: Request, res: Response) {
             return res.status(404).json({ message: 'Dwelling does not exist' });
         }
 
-        const userResult = await userModel.findOne({ user });
-
-        console.log('userResult', userResult);
+        const userResult = await userModel.findOne({ username: user });
 
         if (!userResult) {
             return res.status(404).json({ message: 'User does not exist' });
