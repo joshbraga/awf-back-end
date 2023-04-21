@@ -51,6 +51,8 @@ export async function InviteUserToDwelling(req: Request, res: Response) {
     try {
         const { code, user } = req.body;
 
+        console.log(req.body);
+
         if (!code || !user || code.length === 0 || user.length === 0) {
             return res.status(400).json({ message: 'missing or malformed parameters' });
         }
