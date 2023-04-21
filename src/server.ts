@@ -12,9 +12,11 @@ import { postRoutes } from './routes/posts.routes';
 
 dotenv.config();
 
-const PORT: number = 7000;
+const PORT = process.env.PORT || 7000;
 
 let options = {};
+
+
 
 if (process.env.LOCAL_DEPLOYMENT) {
   options = {
@@ -45,8 +47,8 @@ mongoose.connection.once('open', function () {
 
 
 
-app.listen(1337, () => {
-  console.log(`Listening on port hi ${1337}`);
+app.listen(PORT, () => {
+  console.log(`Listening on port hi ${PORT}`);
 });
 
 

@@ -6,7 +6,6 @@
   "scripts": {
     "start": "node dist/server.js",
     "build": "tsc",
-    "test": "echo \"Error: no test specified\" && exit 1",
     "nodemon": "nodemon ./dist/server.js"    
   },
   "keywords": [],
