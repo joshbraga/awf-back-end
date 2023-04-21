@@ -44,5 +44,5 @@ export async function addDwelling (req: Request, res: Response) {
 
     await userData.save();
 
-    return res.send(200).json({message:"New dwelling created."})
+    return res.send(200).json({code})
 }

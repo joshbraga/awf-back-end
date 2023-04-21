@@ -57,7 +57,7 @@ export async function setCurrentCode (req: Request, res: Response) {
 }
 
 export async function getUser (req: Request, res: Response) {
-    const { user } = req.body;
+    const user = req.query.user;
 
     try
     {
@@ -80,7 +80,7 @@ export async function getUser (req: Request, res: Response) {
 }
 
 export async function editUser (req: Request, res: Response) {
-    const { firstName, lastName, user } = req.body;
+    const { firstName, lastName, newUser, user } = req.body;
 
     try
     {
@@ -94,7 +94,7 @@ export async function editUser (req: Request, res: Response) {
         {
             existingUser.firstname = firstName;
             existingUser.lastname = lastName;
-            existingUser.username = user;
+            existingUser.username = newUser;
             await existingUser.save();
             return res.status(200).json({message: 'user edited successfully'});
         }
