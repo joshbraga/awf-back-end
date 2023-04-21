@@ -61,10 +61,18 @@ app.use(cookieParser());
 app.use('/auth', authRoutes);
 
 
+
+
+app.use('/dwelling', dwellingRoutes);
+app.use('/posts', postRoutes);
+app.use('/users', userRoutes);
+
+
 //validateJWT
 app.use((req: Request, res: Response, next: NextFunction) => {
   const header = req.headers['authorization'];
   if (!header) {
+    console.log('header missing');
     return res.sendStatus(400);
   }
   const token = header.split(' ')[1];
@@ -81,11 +89,6 @@ app.use((req: Request, res: Response, next: NextFunction) => {
     }
   )
 });
-
-app.use('/dwelling', dwellingRoutes);
-app.use('/posts', postRoutes);
-app.use('/users', userRoutes);
-
 
 mongoose
   //mongodb+srv://administrator:cvLrdOiTvoQlscbC@roomate-hub-cluster.oo7vsvf.mongodb.net/test
