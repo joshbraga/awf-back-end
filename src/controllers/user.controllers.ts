@@ -50,7 +50,7 @@ export async function setCurrentCode (req: Request, res: Response) {
     }
     getUser.currentDwelling = code;
     await getUser.save();
-    return res.status(200);
+    return res.sendStatus(200);
 }
 
 export async function getUser (req: Request, res: Response) {
