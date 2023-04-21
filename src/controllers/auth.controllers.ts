@@ -108,7 +108,7 @@ export async function HandleLogout(req: Request, res: Response) {
 }
 
 export async function AddUser(req: Request, res: Response) {
-    const { username, password, currentDwelling, availableDwellings } = req.body;
+    const { username, password, firstname, lastname } = req.body;
 
     try {
 
@@ -117,7 +117,7 @@ export async function AddUser(req: Request, res: Response) {
         }
 
         const hashPass = await bcrypt.hash(password, 10);
-        const newUser = new userModel({ username, password: hashPass, currentDwelling, availableDwellings });
+        const newUser = new userModel({ username, password: hashPass, firstname, lastname});
         await newUser.save();
         return res.status(201).json({ message: 'Added a new user.' });
 

@@ -59,9 +59,7 @@ app.use(cookieParser());
 
 
 app.use('/auth', authRoutes);
-app.use('/dwelling', dwellingRoutes);
-app.use('/posts', postRoutes);
-app.use('/users', userRoutes);
+
 
 //validateJWT
 app.use((req: Request, res: Response, next: NextFunction) => {
@@ -83,6 +81,10 @@ app.use((req: Request, res: Response, next: NextFunction) => {
     }
   )
 });
+
+app.use('/dwelling', dwellingRoutes);
+app.use('/posts', postRoutes);
+app.use('/users', userRoutes);
 
 
 mongoose

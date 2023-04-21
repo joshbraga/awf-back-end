@@ -97,7 +97,7 @@ export async function addNotice (req: Request, res: Response) {
         //     dwelling?.landlord.push(newNotice);
         // }
 
-        dwelling?.save();
+        await dwelling?.save();
         res.status(200).json({message:`Added a new ${type} post.`});
     }
     catch(err)
@@ -122,7 +122,7 @@ export async function addBill (req: Request, res: Response) {
     {
         const dwelling = await dwellingModel.findOne({code: code})
         dwelling?.bills.push(newBill);
-        dwelling?.save();
+        await dwelling?.save();
 
         res.status(201).json({message:'Added new bill successfully!'});
     }
