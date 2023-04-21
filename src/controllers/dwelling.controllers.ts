@@ -43,7 +43,7 @@ export async function addDwelling(req: Request, res: Response) {
 
     await userData.save();
 
-    return res.send(200).json({ code })
+    return res.status(200).json({ code })
 }
 
 export async function InviteUserToDwelling(req: Request, res: Response) {
