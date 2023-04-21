@@ -1,19 +1,12 @@
 import mongoose from 'mongoose';
 import { INotice } from './notice.interface';
 
-const noticeSchema = new mongoose.Schema({
-    username: {
-        type: String,
-        required: true
-    },
-    title: {
-        type: String,
-        required: true
-    },
-    content: {
-        type: String,
-        required: true
-    }
-}, { collection: 'userData' });
+
+export const noticeSchema = new mongoose.Schema({
+    username: String,
+    title: String,
+    content: String,
+    date: Date
+}, { collection: 'dwellingData' });
 
 export const noticeModel = mongoose.model<INotice & mongoose.Document>('NoticeSchema', noticeSchema);
