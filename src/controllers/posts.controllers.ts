@@ -18,6 +18,8 @@ export async function getAllPosts (req: Request, res: Response) {
 
     const dwelling = await dwellingModel.findOne({code: req.query.code});
 
+    console.log(req.body);
+
     if (!dwelling) {
         return res.status(404).json({message: 'dwelling not found'});
     }
@@ -71,6 +73,8 @@ export async function addNotice (req: Request, res: Response) {
         date: date
     })
 
+    console.log(req.body);
+
     try
     {
         const dwelling = await dwellingModel.findOne({code: code})
@@ -78,7 +82,6 @@ export async function addNotice (req: Request, res: Response) {
         if (!dwelling) {
             return res.status(404).json('Dwelling not found');
         }
-        
         
         if(!type){
             res.status(400).json({message: "No type specfied"});
@@ -93,9 +96,6 @@ export async function addNotice (req: Request, res: Response) {
                 dwelling.roommates.push(newNotice);
             } 
         }
-        // else if(type === "landlord"){
-        //     dwelling?.landlord.push(newNotice);
-        // }
 
         await dwelling?.save();
         res.status(200).json({message:`Added a new ${type} post.`});
@@ -121,6 +121,11 @@ export async function addBill (req: Request, res: Response) {
     try
     {
         const dwelling = await dwellingModel.findOne({code: code})
+        
+        if (!dwelling) {
+            return res.status(404).json('Dwelling not found');
+        }
+        
         dwelling?.bills.push(newBill);
         await dwelling?.save();
 
