@@ -10,10 +10,6 @@ export async function getCurrentCode (req: Request, res: Response) {
         return res.sendStatus(500);
     }
 
-    const userResults = await userModel.findOne({username: user});
-
-    console.log(userResults);
-
     userModel.findOne({username: user})
         .then((x) => {
             return res.status(200).json(x?.currentDwelling)
@@ -29,10 +25,6 @@ export async function getAllCodes (req: Request, res: Response) {
     if(!user){
         return res.sendStatus(500);
     }
-
-    const userResults = await userModel.findOne({username: user});
-
-    console.log(userResults);
 
     userModel.findOne({username: user})
         .then((x) => {

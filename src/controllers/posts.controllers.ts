@@ -71,8 +71,6 @@ export async function addNotice (req: Request, res: Response) {
         date: date
     })
 
-    console.log(req.body);
-
     try
     {
         const dwelling = await dwellingModel.findOne({code: code})
