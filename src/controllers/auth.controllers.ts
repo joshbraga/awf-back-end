@@ -84,7 +84,6 @@ export async function HandleRefreshToken(req: Request, res: Response) {
 
 export async function HandleLogout(req: Request, res: Response) {
     try {
-        console.log('one');
         const cookies = req.cookies;
         if (!cookies || !cookies?.jwt) {
             return res.sendStatus(204);

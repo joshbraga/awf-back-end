@@ -38,7 +38,12 @@ export async function getAllCodes (req: Request, res: Response) {
 
 export async function setCurrentCode (req: Request, res: Response) {
     const {user, code} = req.body;
-    const getUser = await userModel.findOne({username: user})
+
+    console.log(req.body);
+
+    const getUser = await userModel.findOne({username: user});
+
+    console.log(getUser);
     if(!getUser)
     {
         return res.sendStatus(500);
