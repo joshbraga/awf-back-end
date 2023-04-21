@@ -42,11 +42,12 @@ mongoose.connection.once('open', function () {
   console.log('Mongoose: MongoDB database connection established successfully');
 });
 
-const server = https.createServer(options, app);
+
 
 if (process.env.LOCAL_DEPLOYMENT) {
+  const server = https.createServer(options, app);
   server.listen(443, () => {
-    console.log(`Listening on port hi ${7000}`);
+    console.log(`Listening on port hi ${443}`);
   });
 } else {
   app.listen(443, () => {
