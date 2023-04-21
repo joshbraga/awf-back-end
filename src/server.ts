@@ -1,7 +1,7 @@
 // REFERENCE      : Contents of this file was taken and modified from our capstone project. We have the same group for both projects
 
 import * as dotenv from 'dotenv'
-import express, {Request, Response, NextFunction} from 'express'
+import express, { Request, Response, NextFunction } from 'express'
 import cors, { CorsOptions } from 'cors'
 import helmet from 'helmet'
 import cookieParser from 'cookie-parser';
@@ -76,7 +76,7 @@ app.use((req: Request, res: Response, next: NextFunction) => {
     JWT_ACCESS_TOKEN_SECRET,
     (err, decoded) => {
       if (err) {
-        return res.status(403).json({message: 'jwt authentication failure'});
+        return res.status(403).json({ message: 'jwt authentication failure' });
       }
       res.locals.username = (decoded as any).username;
       next();
@@ -87,9 +87,6 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 app.use('/dwelling', dwellingRoutes);
 app.use('/posts', postRoutes);
 app.use('/users', userRoutes);
-
-
-
 
 mongoose
   //mongodb+srv://administrator:cvLrdOiTvoQlscbC@roomate-hub-cluster.oo7vsvf.mongodb.net/test
