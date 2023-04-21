@@ -74,7 +74,7 @@ export async function HandleRefreshToken(req: Request, res: Response) {
             }
 
             const accessToken = jwt.sign({ username }, JWT_ACCESS_TOKEN_SECRET, { expiresIn: "1d" });
-            return res.status(200).json({ accessToken });
+            return res.status(200).json({ accessToken, username });
         });
 
 }

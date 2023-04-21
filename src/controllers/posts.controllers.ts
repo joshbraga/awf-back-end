@@ -2,6 +2,7 @@ import {Request, Response} from 'express';
 import { dwellingModel } from '../models/dwelling.model';
 import { noticeModel } from '../models/notice.model';
 import { billModel } from '../models/bill.model';
+import { userModel } from '../models/user.model';
 
 export async function getAllPosts (req: Request, res: Response) {
     //return res.json({message: 'NOT IMPLEMENTED: GetAllPosts'});
@@ -15,14 +16,16 @@ export async function getAllPosts (req: Request, res: Response) {
 
     const dateSearch = req.query.date as string;
 
-    console.log(dateSearch);
-
     const dwelling = await dwellingModel.findOne({code: req.query.code});
-    console.log(dwelling?.announcements);
-    const announcements = dwelling?.announcements.filter(post => post.date == dateSearch);
-    const roommates = dwelling?.roommates.filter(post => post.date == dateSearch);
-    const bills = dwelling?.bills.filter(post => post.date == dateSearch);
-    const landlord = dwelling?.landlord.filter(post => post.date == dateSearch);
+
+    if (!dwelling) {
+        return res.status(404).json({message: 'dwelling not found'});
+    }
+
+    const announcements = [...dwelling.announcements];
+    const roommates = dwelling.roommates.filter(post => post.date == dateSearch);
+    const bills = dwelling.bills.filter(post => post.date == dateSearch);
+    const landlord = dwelling.landlord.filter(post => post.date == dateSearch);
 
     const posts = {
         announcements: announcements,
@@ -37,6 +40,7 @@ export async function getAllPosts (req: Request, res: Response) {
 }
 
 export async function addNotice (req: Request, res: Response) {
+
     //return res.json({message: 'NOT IMPLEMENTED: AddPost'});
 
     // const date = new Date();
@@ -58,8 +62,6 @@ export async function addNotice (req: Request, res: Response) {
 
     //await newDwelling.save();
 
-    console.log(req.body);
-    
     const { code, title, content, user, date, type } = req.body
 
     const newNotice = new noticeModel({
@@ -72,6 +74,11 @@ export async function addNotice (req: Request, res: Response) {
     try
     {
         const dwelling = await dwellingModel.findOne({code: code})
+
+        if (!dwelling) {
+            return res.status(404).json('Dwelling not found');
+        }
+        
         
         if(!type){
             res.status(400).json({message: "No type specfied"});
@@ -80,11 +87,15 @@ export async function addNotice (req: Request, res: Response) {
             dwelling?.announcements.push(newNotice);
         }
         else if(type === "roommate"){
-            dwelling?.roommates.push(newNotice);
+            if (dwelling.owner === user) {
+                dwelling.landlord.push(newNotice);
+            } else {
+                dwelling.roommates.push(newNotice);
+            } 
         }
-        else if(type === "landlord"){
-            dwelling?.landlord.push(newNotice);
-        }
+        // else if(type === "landlord"){
+        //     dwelling?.landlord.push(newNotice);
+        // }
 
         dwelling?.save();
         res.status(200).json({message:`Added a new ${type} post.`});

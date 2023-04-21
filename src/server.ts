@@ -12,6 +12,7 @@ import jwt from 'jsonwebtoken';
 import { postRoutes } from './routes/posts.routes';
 import { authRoutes } from './routes/auth.routes';
 import { dwellingRoutes } from './routes/dwelling.routes';
+import { userRoutes } from './routes/user.routes';
 
 const JWT_ACCESS_TOKEN_SECRET = '1435ca643179a0f706f8e271c66aa2266be943ba965ce716c48da483526a112d93a93bd913c1fdddad0d2e47dfa7c70b82dd806b1c6bdad32df309c9af9dc56e';
 const JWT_REFRESH_TOKEN_SECRET = '0154441011bfdc6a693ebc6ebd0943354dcc6a405d33e69492cf1ea2fb088e39fcde9f31192229307cfc0a6106edcb6fbdef910e4a8a04d3f5bcb33e5de42faf';
@@ -60,7 +61,7 @@ app.use(cookieParser());
 app.use('/auth', authRoutes);
 app.use('/dwelling', dwellingRoutes);
 app.use('/posts', postRoutes);
-//app.use('/users', userRoutes);
+app.use('/users', userRoutes);
 
 //validateJWT
 app.use((req: Request, res: Response, next: NextFunction) => {

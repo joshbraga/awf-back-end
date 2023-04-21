@@ -11,11 +11,11 @@ authRoutes.post("/login", async(req: Request, res: Response) => {
     return await HandleLogin(req, res);
 });
 
-authRoutes.post("/refresh", async(req: Request, res: Response) => {
+authRoutes.get("/refresh", async(req: Request, res: Response) => {
     return await HandleRefreshToken(req, res);    
 });
 
-authRoutes.post("/logout", async(req: Request, res: Response) => {
+authRoutes.get("/logout", async(req: Request, res: Response) => {
     return await HandleLogout(req, res);    
 });
 
