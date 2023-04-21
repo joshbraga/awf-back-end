@@ -42,8 +42,8 @@ app.use('/posts', postRoutes);
 
 mongoose
   //mongodb+srv://administrator:cvLrdOiTvoQlscbC@roomate-hub-cluster.oo7vsvf.mongodb.net/test
-  //.connect(`mongodb+srv://administrator:cvLrdOiTvoQlscbC@roomate-hub-cluster.oo7vsvf.mongodb.net/roomateHub`)
-  .connect(`mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@roomate-hub-cluster.oo7vsvf.mongodb.net/roomateHub`)
+  .connect(`mongodb+srv://administrator:cvLrdOiTvoQlscbC@roomate-hub-cluster.oo7vsvf.mongodb.net/roomateHub`)
+  //.connect(`mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@roomate-hub-cluster.oo7vsvf.mongodb.net/roomateHub`)
   .then(() => console.log('mongodb connected'))
   .catch((err) => console.log('Failed to connect ', err));
 
@@ -57,8 +57,8 @@ const server = https.createServer(options, app);
 //   console.log(`Listening on port hi ${PORT}`);
 // });
 
-server.listen(PORT, () => {
-  console.log(`Listening on port hi ${PORT}`);
+server.listen(7000, () => {
+  console.log(`Listening on port hi ${7000}`);
 });
 
 //mongodb+srv://administrator:cvLrdOiTvoQlscbC@roomate-hub-cluster.oo7vsvf.mongodb.net/roomateHub
