@@ -18,8 +18,6 @@ export async function getAllPosts (req: Request, res: Response) {
 
     const dwelling = await dwellingModel.findOne({code: req.query.code});
 
-    console.log(req.body);
-
     if (!dwelling) {
         return res.status(404).json({message: 'dwelling not found'});
     }
@@ -36,7 +34,7 @@ export async function getAllPosts (req: Request, res: Response) {
         landlord: landlord
     }
 
-    console.log("POSTS: ", posts);
+    //console.log("POSTS: ", posts);
 
     res.status(200).json(posts);
 }
